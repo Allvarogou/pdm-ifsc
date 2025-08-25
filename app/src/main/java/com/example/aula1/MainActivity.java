@@ -1,37 +1,58 @@
 package com.example.aula1;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView textView;
-    int contador =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        Log.d("Ciclo_vida", "onCreate");
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
-            textView = findViewById(R.id.tv);
-            textView.setText(Integer.toString(contador));
-            textView.setOnClickListener(v1 ->{
-                contador++;
-                textView.setText(Integer.toString(contador));
-            });
-
-            return insets;
-        });
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("Ciclo_vida", "osStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("Ciclo_vida", "osResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("Ciclo_vida", "osPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Ciclo_vida", "osStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("Ciclo_vida", "osRestart");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("Ciclo_vida", "osDestroy");
+    }
+
+
 }
