@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="-"
         android:textColor="#664FA3"
-        android:textSize="96sp"
+        android:textSize="50px"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
