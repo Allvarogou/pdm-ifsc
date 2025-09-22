@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Log.d("Ciclo_vida", "onCreate");
+
 
         button =findViewById(R.id.button);
         Numero =findViewById(R.id.Numero);
@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
             try {
 
                 String numStr = Numero.getText().toString();
-
-
 
                 if (numStr.isEmpty() ) {
                     System.out.println("Numero Invalido");
