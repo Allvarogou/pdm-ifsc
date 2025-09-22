@@ -1,5 +1,6 @@
 package com.example.aula1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,68 +16,50 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
-    EditText editTextmin, editTextmax;
-    TextView tv;
+    EditText Numero;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_main);
         Log.d("Ciclo_vida", "onCreate");
+
         button =findViewById(R.id.button);
-        editTextmax =findViewById(R.id.edMax);
-        editTextmin =findViewById(R.id.edMin);
-        tv =findViewById(R.id.tvResultado);
+        Numero =findViewById(R.id.Numero);
+
+
         button.setOnClickListener(v -> {
-            Random random = new Random();
+            try {
 
-            int min, max;
-            min = Integer.parseInt(editTextmin.getText().toString());
-            max = Integer.parseInt(editTextmax.getText().toString());
+                String numStr = Numero.getText().toString();
 
-            int delta = max-min;
-            int sorteado = random.nextInt(delta)+min;
-            tv.setText(Integer.toString(sorteado));
+
+
+                if (numStr.isEmpty() ) {
+                    System.out.println("Numero Invalido");
+                    return;
+                }
+
+
+                Integer Nume = Integer.parseInt(numStr);
+
+                Intent intent = new Intent(MainActivity.this, ResultadoTabuada.class);
+                intent.putExtra("Numero", Nume);
+
+
+
+
+                // 5. Inicia a tela de resultados.
+                startActivity(intent);
+
+            } catch (NumberFormatException e) {
+                // Se a conversão falhar, exibe uma mensagem de erro.
+                System.out.println("Erro");
+
+
+            }
         });
-
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("Ciclo_vida", "osStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("Ciclo_vida", "osResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("Ciclo_vida", "osPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("Ciclo_vida", "osStop");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("Ciclo_vida", "osRestart");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("Ciclo_vida", "osDestroy");
-    }
-
-
 }
