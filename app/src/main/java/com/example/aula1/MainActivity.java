@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         lv= findViewById(R.id.listview);
 
-        ArrayAdapter<String> a = new ArrayAdapter(
+        ArrayAdapter<String> a = new ArrayAdapter<>(
                 this,
                 R.layout.item_lista,
-                R.layout.tex,
+                R.id.textView,
                   nomes);
         lv.setAdapter(a);
     }
