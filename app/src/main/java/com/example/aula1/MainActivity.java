@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> a = new ArrayAdapter<>(
                 this,
                 R.layout.item_lista,
-                R.id.textView,
+                R.id.textVie,
                   nomes);
         lv.setAdapter(a);
     }
