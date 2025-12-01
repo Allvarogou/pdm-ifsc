@@ -1,33 +1,32 @@
 package com.example.aula1;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    int i=0;
-    String [] nomes= new String[] {"Alvaro", "Ribeiro", "José", "Duda"};
-
-    ListView lv;
+    SQLiteDatabase bancoDados;
+    EditText editText;
+    Button buttonInserir;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        lv= findViewById(R.id.listview);
+        //Associando os componentes com váriaveis locais
+        findViewById(R.id.editText);
+        findViewById(R.id.buttonInserir);
+        findViewById(R.id.listView);
 
-        ArrayAdapter<String> a = new ArrayAdapter<>(
-                this,
-                R.layout.item_lista,
-                R.id.textView,
-                  nomes);
-        lv.setAdapter(a);
-    }
-}
+        //Configura o banco
+        bancoDados = openOrCreateDatabase("banco", MODE_PRIVATE, null);
+        bancoDados.execSQL("CREATE TABLE IF NOT EXISTS notas (id INTEGER PRIMARY KEY AUTOINCREMENT, txt TEXT);");
+        //this.listarNotas();
+
+}}
