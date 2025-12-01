@@ -10,30 +10,35 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.versionedparcelable.NonParcelField;
 
 import java.util.List;
 
 public class AdapterNotas extends ArrayAdapter<Nota> {
     Context mcontext;
-
-    public AdapterNotas(Context context, int resource, List<Nota> objects){
-        super (context, resource, objects);
+    public AdapterNotas(@NonNull Context context, int resource, @NonNull List<Nota> objects){
+        super(context, resource, objects);
         mcontext = context;
     }
 
-
+    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = covertView;
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
+        View view = convertView;
         LayoutInflater inflater = LayoutInflater.from(mcontext);
-        view = inflater.inflate(R.layout.item_nota, parent, false);
+        view = inflater.inflate(R.layout.item_nota, parent, false); // transforma esse XML em um componente visual que o Android consegue usar:
+
         Nota nota = getItem(position);
 
         TextView tvid = view.findViewById(R.id.tvid);
-        TextView tvtexto = view.findViewById(R.id.tvtexto);
-        tvid.setText(Integer.toString(nota.id));         // Exibe ID
-        tvtexto.setText(nota.texto);                     // Exibe texto da nota
+        TextView tvtexto = view.findViewById(R.id.tvtxt);
+
+        tvid.setText(Integer.toString(nota.id));
+        tvtexto.setText(nota.texto);
 
         return view;
+
     }
+
+
 }
